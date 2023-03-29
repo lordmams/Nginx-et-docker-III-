@@ -1,0 +1,17 @@
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+
+      
+
+        server_name localhost;
+
+        location /test {
+            proxy_pass http://flask1:3335/;
+            proxy_set_header Host "localhost";
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+}
